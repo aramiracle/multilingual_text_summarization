@@ -41,11 +41,18 @@ def summarize_and_translate(article, source_language, target_language):
 
 # Generate description with supported languages and emojis
 supported_languages_description = "This tool supports translation between various languages, including:\n"
-for language, code in language_mapping.items():
+for language, _ in language_mapping.items():
     supported_languages_description += f"{language} \n"
 
 # Combine the main description with the supported languages description
 description_with_emojis = f"📰✨ Welcome to the Article Summarization and Translation tool! Simply enter your article in the text box, select the language it's written in as the source language, and choose the language you want to translate it into as the target language. Then, click 'Summarize & Translate' to get a concise summary in your desired language. 🌍📝🔍\n\n{supported_languages_description}"
+
+# Read example articles from files
+with open("article1.txt", "r", encoding="utf-8") as file:
+    example_article1 = file.read()
+
+with open("article2.txt", "r", encoding="utf-8") as file:
+    example_article2 = file.read()
 
 iface = gr.Interface(fn=summarize_and_translate, 
                      inputs=["text",
@@ -53,5 +60,9 @@ iface = gr.Interface(fn=summarize_and_translate,
                              gr.Dropdown(choices=list(language_mapping.keys()), label="Target Language")], 
                      outputs="text", 
                      title="Article Summarization and Translation", 
-                     description=description_with_emojis)
+                     description=description_with_emojis,
+                     examples=[
+                         [example_article1, "🇮🇷 Persian", "🇮🇹 Italian"],
+                         [example_article2, "🇫🇷 French", "🇪🇸 Spanish"]
+                     ])
 iface.launch()
