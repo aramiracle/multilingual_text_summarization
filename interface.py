@@ -50,7 +50,7 @@ description_with_emojis = f"📰✨ Welcome to the Article Summarization and Tra
 # Read example articles from files
 with open("article1.txt", "r", encoding="utf-8") as file:
     example_article1 = file.read()
-
+ 
 with open("article2.txt", "r", encoding="utf-8") as file:
     example_article2 = file.read()
 

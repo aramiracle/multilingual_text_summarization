@@ -17,6 +17,10 @@ This tool supports translation between various languages, including:
 - 🇮🇹 Italian
 - 🇰🇷 Korean
 
+## Interface View
+![Interface View](interface_view.png)
+*Screenshot of the interface showing the image upload and language selection*
+
 ## Usage
 
 1. **Input Article**: Enter your article in the provided text box.
