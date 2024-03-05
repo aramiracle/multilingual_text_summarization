@@ -22,7 +22,7 @@ This tool supports translation between various languages, including:
 1. **Input Article**: Enter your article in the provided text box.
 2. **Source Language**: Select the language of the article from the dropdown labeled "Source Language".
 3. **Target Language**: Choose the language you want to translate the article into from the dropdown labeled "Target Language".
-4. **Summarize & Translate**: Click on the 'Summarize & Translate' button to initiate the process.
+4. **Summarize & Translate**: Click on the 'Submit' button to initiate the process.
 5. **View Results**: The tool will generate a summarized and translated version of the article in the chosen target language.
 
 ## Examples
