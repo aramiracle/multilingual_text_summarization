@@ -45,7 +45,7 @@ for language, _ in language_mapping.items():
     supported_languages_description += f"{language} \n"
 
 # Combine the main description with the supported languages description
-description_with_emojis = f"📰✨ Welcome to the Article Summarization and Translation tool! Simply enter your article in the text box, select the language it's written in as the source language, and choose the language you want to translate it into as the target language. Then, click 'Summarize & Translate' to get a concise summary in your desired language. 🌍📝🔍\n\n{supported_languages_description}"
+description_with_emojis = f"📰✨ Welcome to the Article Summarization and Translation tool! Simply enter your article in the text box, select the language it's written in as the source language, and choose the language you want to translate it into as the target language. Then, click 'Submit' to get a concise summary in your desired language. 🌍📝🔍\n\n{supported_languages_description}"
 
 # Read example articles from files
 with open("article1.txt", "r", encoding="utf-8") as file:
