@@ -23,20 +23,25 @@ language_mapping = {
 def summarize_and_translate(article, source_language, target_language):
 
     # translate source language to English
-    tokenizer.src_lang = language_mapping[source_language]
-    encoded_ar = tokenizer(article, return_tensors="pt")
-    generated_tokens = model.generate(**encoded_ar, forced_bos_token_id=tokenizer.lang_code_to_id["en_XX"])
-    translated_article = tokenizer.batch_decode(generated_tokens, skip_special_tokens=True)[0]
-
+    if not "English" in source_language:
+        tokenizer.src_lang = language_mapping[source_language]
+        encoded_ar = tokenizer(article, return_tensors="pt")
+        generated_tokens = model.generate(**encoded_ar, forced_bos_token_id=tokenizer.lang_code_to_id["en_XX"])
+        translated_article = tokenizer.batch_decode(generated_tokens, skip_special_tokens=True)[0]
+    else:
+        translated_article = article
     # summarize article
     summarized_article = summarizer(translated_article, max_length=150, min_length=50, do_sample=False)[0]['summary_text']
 
-    # translate English to target language
-    tokenizer.src_lang = "en_XX"
-    encoded_ar = tokenizer(summarized_article, return_tensors="pt")
-    generated_tokens = model.generate(**encoded_ar, forced_bos_token_id=tokenizer.lang_code_to_id[language_mapping[target_language]])
-    translated_summarized_article = tokenizer.batch_decode(generated_tokens, skip_special_tokens=True)[0]
-
+    if not "English" in target_language:
+        # translate English to target language
+        tokenizer.src_lang = "en_XX"
+        encoded_ar = tokenizer(summarized_article, return_tensors="pt")
+        generated_tokens = model.generate(**encoded_ar, forced_bos_token_id=tokenizer.lang_code_to_id[language_mapping[target_language]])
+        translated_summarized_article = tokenizer.batch_decode(generated_tokens, skip_special_tokens=True)[0]
+    else:
+        translated_summarized_article = summarized_article
+    
     return translated_summarized_article
 
 # Generate description with supported languages and emojis
